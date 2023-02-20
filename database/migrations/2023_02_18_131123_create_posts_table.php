@@ -18,7 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id')->nullable();
             $table->timestamps();
 
+            // IDX
             $table->index('category_id','post_category_idx');
+            // FK
             $table->foreign('category_id','post_category_fk')->on('categories')->references('id');
         });
     }

@@ -18,5 +18,9 @@ Route::name('main')->group(function(){
 });
 
 
+
+
+
+
 Auth::routes();
 
