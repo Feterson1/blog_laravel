@@ -32,11 +32,13 @@ class StoreRequest extends FormRequest
 
         ];
     }
-    public function messages()
-    {
+    public function messages(){
+        
         return[
             'title.required' => 'Это поле необходимо для заполнения',
             'title.string' => 'Данные должны соотвествовать строчному типу',
+            'content.required' => 'Это поле необходимо для заполнения',
+            'content.string' => 'Данные должны соотвествовать строчному типу',
             'preview_image.required' => 'Это поле необходимо для заполнения',
             'preview_image.file' => 'Необходимо выбрать файл',
             'main_image.required' => 'Это поле необходимо для заполнения',
@@ -45,6 +47,6 @@ class StoreRequest extends FormRequest
             'category_id.integer' => 'Id категории должен быть числом',
             'category_id.exists' => 'Id категории должен быть числом',
             'tag_ids.array' => 'Необходимо отправить массив данных',
-        ]
+        ];
     }
 }
