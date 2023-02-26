@@ -12,7 +12,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\CodeUnit\FunctionUnit;
 
-class PostController extends Controller
+
+class PostController extends BaseController
 {
     public function index(){
 
@@ -28,18 +29,9 @@ class PostController extends Controller
         return view('admin.posts.create',compact('categories','tags'));
     }
     public function store(StoreRequest $request){
-        try{
-            $data = $request->validated();
-            $tagIds = $data['tag_ids'];
-            unset($data['tag_ids']);
-            $data['preview_image'] = Storage::disk('public')->put('/images',$data['preview_image']);
-            $data['main_image'] = Storage::disk('public')->put('/images',$data['main_image']);
-            
-            $post = Post::firstOrCreate($data);
-            $post->tags()->attach($tagIds);
-        }catch(\Exception $exception){
-            abort(404);
-        }
+        $data = $request->validated();
+        $this->service->store($data);
+        
     
         return redirect()->route('admin.post.index');
     }
@@ -58,21 +50,13 @@ class PostController extends Controller
     public function update(UpdateRequest $request,Post $post){
 
         $data = $request->validated();
-        $tagIds = $data['tag_ids'];
-        unset($data['tag_ids']);
-        $data['preview_image'] = Storage::disk('public')->put('/images',$data['preview_image']);
-        $data['main_image'] = Storage::disk('public')->put('/images',$data['main_image']);
+        $post = $this->service->update($data,$post);
         
-        $post->update($data);
-        $post->tags()->sync($tagIds);
-
-        
-        $post->update($data);
 
         return view('admin.posts.show',compact('post'));
     }
     public function delete(Post $post){
-        $post->delete();
+        $post->delete(); 
         return redirect()->route('admin.post.index');
     }
 }
