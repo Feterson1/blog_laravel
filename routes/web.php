@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Main\IndexController;
 
@@ -17,6 +18,11 @@ Route::name('main')->group(function(){
     Route::get('/',IndexController::class);
 });
 
+Route::get('/logout',[LoginController::class,'logout']);
+
+
+
+
 
 
 
@@ -24,3 +30,4 @@ Route::name('main')->group(function(){
 
 Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
