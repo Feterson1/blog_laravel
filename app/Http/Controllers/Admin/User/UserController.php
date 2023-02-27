@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Admin\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\StoreRequest;
 use App\Http\Requests\Admin\User\UpdateRequest;
+use App\Mail\User\PasswordMail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use SebastianBergmann\CodeUnit\FunctionUnit;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -25,9 +27,10 @@ class UserController extends Controller
     public function store(StoreRequest $request){
 
         $data = $request->validated();
-        
-        $data['password'] = Hash::make($data['password']);
+        $password = Str::random(10);
+        $data['password'] = Hash::make( $password );
         User::firstOrCreate(['email' => $data['email']],$data);
+        Mail::to($data['email'])->send(new PasswordMail($password));
         return redirect()->route('admin.user.index');
     }
     public function show(User $user){

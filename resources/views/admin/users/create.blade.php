@@ -46,14 +46,14 @@
                     @enderror
 
                   </div>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label>Пароль</label>
                     <input type="text" class="form-control" name="password" placeholder="Ваш пароль">
                     @error('password')
                     <div class="text-danger">{{$message}}</div>
                     @enderror
 
-                  </div>
+                  </div> -->
                   <div class="form-group w-50">
                         <label>Выберите роль</label>
                         <select class="form-control" name="role">
