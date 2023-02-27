@@ -26,7 +26,8 @@ class VerificationController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
+    // При подтверждении Email перекидывает на страницу которую здесь укажешь
 
     /**
      * Create a new controller instance.

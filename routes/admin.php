@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\User\UserController;
 
 
 
-Route::middleware('auth','admin')->group(function(){
+Route::middleware('auth','admin','verified')->group(function(){
     Route::prefix('admin')->group(function(){
         Route::get('/',AdminController::class);
         Route::prefix('categories')->group(function(){
