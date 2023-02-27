@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Main\AdminController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Tag\TagController;
 use App\Http\Controllers\Admin\Post\PostController;
+use App\Http\Controllers\Admin\User\UserController;
 
 
 
@@ -38,6 +39,16 @@ Route::prefix('admin')->group(function(){
         Route::get('/{post}/edit',[PostController::class,'edit'])->name('admin.post.edit');
         Route::patch('/{post}',[PostController::class,'update'])->name('admin.post.update');
         Route::delete('/{post}',[PostController::class,'delete'])->name('admin.post.delete');
+    });
+
+    Route::prefix('users')->group(function(){
+        Route::get('/',[UserController::class,'index'])->name('admin.user.index');
+        Route::get('/create',[UserController::class,'create'])->name('admin.user.create');
+        Route::post('/store',[UserController::class,'store'])->name('admin.user.store');
+        Route::get('/{user}',[UserController::class,'show'])->name('admin.user.show');
+        Route::get('/{user}/edit',[UserController::class,'edit'])->name('admin.user.edit');
+        Route::patch('/{user}',[UserController::class,'update'])->name('admin.user.update');
+        Route::delete('/{user}',[UserController::class,'delete'])->name('admin.user.delete');
     });
 
 });
