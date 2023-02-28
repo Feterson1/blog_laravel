@@ -36,7 +36,7 @@
                 <p>New Orders</p>
               </div>
               <div class="icon">
-                <i class="ion ion-bag"></i>
+              <i class="fas fa-duotone fa-users"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
