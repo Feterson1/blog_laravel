@@ -16,7 +16,7 @@ use App\Http\Controllers\Main\IndexController;
 */
 
 
-Route::get('/main',IndexController::class)->name('main.index');
+Route::get('/',IndexController::class)->name('main.index');
 
 
 
