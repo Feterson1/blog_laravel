@@ -14,9 +14,11 @@ use App\Http\Controllers\Main\IndexController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::name('main')->group(function(){
-    Route::get('/',IndexController::class);
-});
+
+
+Route::get('/main',IndexController::class)->name('main.index');
+
+
 
 Route::get('/logout',[LoginController::class,'logout']);
 
