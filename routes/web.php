@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Main\IndexController;
+use App\Http\Controllers\Post\ShowPostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,11 @@ use App\Http\Controllers\Main\IndexController;
 
 Route::get('/',IndexController::class)->name('main.index');
 
+Route::prefix('posts')->group(function(){
+    Route::get('/',[ShowPostController::class,'index'])->name('post.index');
+    Route::get('/{post}',[ShowPostController::class,'show'])->name('post.show');
+
+});
 
 
 Route::get('/logout',[LoginController::class,'logout']);
