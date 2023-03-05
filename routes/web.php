@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Main\IndexController;
+use App\Http\Controllers\Post\Comment\CommentController;
 use App\Http\Controllers\Post\ShowPostController;
 
 /*
@@ -22,6 +23,12 @@ Route::get('/',IndexController::class)->name('main.index');
 Route::prefix('posts')->group(function(){
     Route::get('/',[ShowPostController::class,'index'])->name('post.index');
     Route::get('/{post}',[ShowPostController::class,'show'])->name('post.show');
+   
+        Route::prefix('{post}/comments')->group(function(){
+            Route::post('/',[CommentController::class,'store'])->name('post.comment.store');
+
+        });
+   
 
 });
 
