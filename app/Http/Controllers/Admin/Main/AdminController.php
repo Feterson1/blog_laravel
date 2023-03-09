@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function __invoke(){
+    public function index(){
 
         $usersCount = User::all()->count();
         $postsCount = Post::all()->count();
